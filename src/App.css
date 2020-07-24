@@ -1,0 +1,49 @@
+*{
+  margin: 0%;
+}
+
+.App {
+  background-color: #FAFAFA;
+  justify-content: center;
+  text-align: center;
+}
+
+.header{
+  text-align: left;
+}
+
+.logo {
+  width: 100px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.post{
+  max-width: 100%;
+}
+
+.post-container{
+  max-width: 575px;
+  margin: 15px 0;
+}
+
+.poster{
+  display: flex;
+  align-items: center;
+}
+
+.footer{
+  text-align: left;
+}
+
+.navbar{
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (min-width: 900px) {
+  .container{
+    margin:0 25%
+  }
+}
