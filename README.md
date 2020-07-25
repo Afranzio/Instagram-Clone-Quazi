@@ -4,4 +4,7 @@ Started to create a Instagram clone with the help of Clever Programmer (Quazi an
 
 @Day[68-100]ofcode
 
-#Gooood_Start
+#the frontend of instrgam clone is completed and firebase in need to work.
+
+
+#Day69/100
