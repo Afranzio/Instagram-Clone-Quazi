@@ -2,15 +2,15 @@ import React from 'react';
 import Header from './header';
 import Footer from './footer';
 
-function Post() {
+function Post( {username, location, imageURL, command} ) {
   return (
     <div className="post-container">
-      <Header />
+      <Header username={username} location={location} />
       <img 
       className="post" 
-      src="https://www.freecodecamp.org/news/content/images/size/w1000/2020/06/freecodecamp_cover.png" 
+      src={imageURL} 
       alt="" />
-      <Footer />
+      <Footer username={username} command={command} />
     </div>
   );
 }
