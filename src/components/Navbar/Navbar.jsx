@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
-import {auth} from '../../firebase'
+import {auth} from '../../firebase';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import {TextField} from '@material-ui/core'
+import ImageUploader from "../../imageUpload";
+
 
 function getModalStyle() {
     const top = 50;
@@ -69,7 +71,6 @@ const Navbar = () => {
       })
     })
     .catch((error) => alert(error.message))
-    
     setOpen(false);
   }
 
@@ -77,8 +78,10 @@ const Navbar = () => {
     const unsubscribe = auth.onAuthStateChanged((authUser)=> {
       if (authUser){
         //user has loggedd in
-        console.log(authUser);
+        console.log(authUser.displayName);
         setUser(authUser);
+        return authUser.updateProfile({
+          displayName: username })
       }
       else{
         //user has logged out
@@ -103,6 +106,7 @@ const Navbar = () => {
             value={email}
             onChange={(e)=> setEmail(e.target.value)} />
             <TextField id="standard-basic" 
+            type='password'
             label="password" 
             value={password}
             onChange={(e)=> setPassword(e.target.value)} /> 
@@ -120,6 +124,7 @@ const Navbar = () => {
             value={email}
             onChange={(e)=> setEmail(e.target.value)} />
             <TextField id="standard-basic" 
+            type='password'
             label="password" 
             value={password}
             onChange={(e)=> setPassword(e.target.value)} /> 
@@ -177,6 +182,10 @@ const Navbar = () => {
                 </Button>
               </div>
             )}
+            {user ? (<ImageUploader username={user.displayName} />)
+               :
+              <h2>Please Login to Upload</h2>
+            }
         </div>
     );
 }

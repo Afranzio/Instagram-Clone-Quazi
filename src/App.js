@@ -1,19 +1,24 @@
 import React, { useState,useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Post from './components/post/Post';
-import Upload from './components/Upload'
+// import Upload from './components/Upload';
 import './App.css';
+
+
+import  firebase  from "firebase";
 
 import {db} from './firebase'
 
 function App() {
 
   const [posts, setPosts] = useState([])
+  
 
   useEffect(() => {
-    db.collection("Instagram-Clone").onSnapshot((snapshot) => {
+    db.collection("Instagram-Clone").orderBy('timestamp', 'desc').onSnapshot((snapshot) => {
       setPosts(
         snapshot.docs.map((doc) => ({
+          timestamp : firebase.firestore.FieldValue.serverTimestamp(),
           id: doc.id,
           post: doc.data(),
         }))
@@ -25,8 +30,7 @@ function App() {
       <div className='container'>
         <div className="App">
         <Navbar />
-      <div>
-        <Upload />
+      <div> 
       </div>
       <div className='background'>
         {
