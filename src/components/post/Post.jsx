@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './header';
 import Footer from './footer';
 
-function Post( {username, location, imageURL, command} ) {
+function Post( {username, postId,location, imageURL, command} ) {
   return (
     <div className="post-container">
       <Header username={username} location={location} />
@@ -10,7 +10,7 @@ function Post( {username, location, imageURL, command} ) {
       className="post" 
       src={imageURL} 
       alt="" />
-      <Footer username={username} command={command} />
+      <Footer username={username} command={command} postId={postId} />
     </div>
   );
 }

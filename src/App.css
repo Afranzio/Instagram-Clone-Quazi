@@ -22,18 +22,20 @@
 }
 
 .background{
-  background-color: #FAFAFA;
+  background-color: #FFFFFF;
 
 }
 
 .post{
-  height: 55vh;
+  position: relative;
   max-width: 100%;
+  max-height: 55vh;
 }
 
 .post-container{
-  border-left: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
+  border: 1px solid lightgray;
+  background-color: #F3F3F3;
+  padding: 10px;
   max-width: 575px;
   margin: 45px 0;
 }
@@ -44,7 +46,13 @@
 }
 
 .footer{
+  border-top: 1px solid lightgray;
+  margin-top: 5px;
   text-align: left;
+}
+
+.upload-container{
+  padding: 0;
 }
 
 .navbar{

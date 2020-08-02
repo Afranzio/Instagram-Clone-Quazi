@@ -5,7 +5,6 @@ import {auth} from '../../firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import {TextField} from '@material-ui/core'
-import ImageUploader from "../../imageUpload";
 
 
 function getModalStyle() {
@@ -34,12 +33,12 @@ paper: {
 },
 }));
 
-const Navbar = () => {
+const Navbar = ({user, userChange}) => {
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser]=useState();
+//   const [user, setUser]=useState();
   const [open, setOpen] =useState(false);
   const [openSignIn, setOpenSignIn]=useState(false)
 
@@ -52,7 +51,7 @@ const Navbar = () => {
 
     auth.signInWithEmailAndPassword(email,password)
     .then((authUser) => {
-      setUser(authUser);
+      userChange(authUser);
       setOpenSignIn(false);
     })
     .catch((error)=> alert(error.message))
@@ -62,16 +61,15 @@ const Navbar = () => {
 
   const signup=(event)=>{
     event.preventDefault();
-
     auth
-    .createUserWithEmailAndPassword(email, password)
-    .then((authUser) => {
-        return authUser.updateProfile({
-        displayName: username
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+          authUser.user.updateProfile({
+          displayName: username
+        })
+      setOpen(false);
       })
-    })
     .catch((error) => alert(error.message))
-    setOpen(false);
   }
 
   useEffect(() => {
@@ -79,13 +77,13 @@ const Navbar = () => {
       if (authUser){
         //user has loggedd in
         console.log(authUser.displayName);
-        setUser(authUser);
-        return authUser.updateProfile({
-          displayName: username })
+        userChange(authUser);
+        // return authUser.updateProfile({
+        //   displayName: username })
       }
       else{
         //user has logged out
-        setUser(null)
+        userChange(null)
       }
     })
     return () => { 
@@ -182,10 +180,6 @@ const Navbar = () => {
                 </Button>
               </div>
             )}
-            {user ? (<ImageUploader username={user.displayName} />)
-               :
-              <h2>Please Login to Upload</h2>
-            }
         </div>
     );
 }
