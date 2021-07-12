@@ -3,8 +3,6 @@ import {Input, Button} from '@material-ui/core'
 import { storage, db } from "./firebase";
 import  firebase  from "firebase";
 
-import './ImageUpload.css'
-
 
 export default function ImageUpload({username}) {
 
@@ -20,7 +18,6 @@ export default function ImageUpload({username}) {
     }
 
     const handleUpload = () => {
-
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
         
         uploadTask.on(
@@ -59,18 +56,18 @@ export default function ImageUpload({username}) {
                         setProgress(0)
                         setCaption('')
                         setLocation('')
-                        setImage(null)
+                        setImage('')
                     })
             }
         )
     }
     return (
-        <form className="imageUpload">
-            <progress value={progress} max='100' className="upload__progress" />
-            <Input type='text' value={caption} placeholder="Enter Caption" onChange={e=>setCaption(e.target.value)} />
-            <Input type='text' value={location} placeholder="Location" onChange={e=>setLocation(e.target.value)} />
+        <div>
+            <progress value={progress} max='100' />
+            <Input type='text' placeholder="Enter Caption" onChange={e=>setCaption(e.target.value)} />
+            <Input type='text' placeholder="Location" onChange={e=>setLocation(e.target.value)} />
             <input type='file' onChange={handleChange} />
             <Button className="upload_btn" onClick={handleUpload} >Create Post</Button>
-        </form>
+        </div>
     )
 }
