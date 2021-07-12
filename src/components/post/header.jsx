@@ -7,6 +7,7 @@ const Header = ( {username, location} ) => {
             <div className='poster'>
                 <Avatar alt={username} src='/static/images/avatar/1.png' />
                 <div className="id">
+                    {console.log(username)}
                     <h5>{username}</h5>
                     <h6>{location}</h6>
                 </div>

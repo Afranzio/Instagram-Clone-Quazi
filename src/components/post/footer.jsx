@@ -3,7 +3,6 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import QuestionAnswerTwoToneIcon from '@material-ui/icons/QuestionAnswerTwoTone';
 
-import firebase from 'firebase'
 import { db } from '../../firebase'
 
 
@@ -39,10 +38,9 @@ const Footer = ( {username, postId, command} ) => {
             {like? <FavoriteBorderIcon onClick={liked} /> : <FavoriteIcon onClick={liked} />}
             <QuestionAnswerTwoToneIcon />
             </div>
-            <div>
-                <strong>{username}: </strong><span>{command}</span>
+            <div className="command">
+                <span>{command}</span>
             </div>
-            {console.log(comments)}
             <div className='comment-session'>
                 {comments.map((comment) => (
                     <p>
