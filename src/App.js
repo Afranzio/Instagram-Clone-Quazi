@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 import Home from './components/home/home'
 import Chat from './components/chat/chat'
+import Login from './components/auth/login'
+import Signup from './components/auth/signup'
 
 // Navbar And Footer
 import Navbar from './components/Navbar/Navbar';
@@ -12,9 +14,8 @@ import Footer from './components/footer/footer';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+// Firebase
 import firebase from "firebase";
-
 import { db } from './firebase'
 
 function App() {
@@ -37,6 +38,13 @@ function App() {
         }))
       );
     });
+    firebase.auth().onAuthStateChanged(function(userAuth) {
+      if (userAuth) {
+        window.location = "#/"
+      } else {
+        window.location = "#/login"
+      }
+    });
   }, []);
 
   return (
@@ -46,6 +54,12 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home posts={posts} user={user} userChange={userChange} />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/signup">
+              <Signup />
             </Route>
             <Route exact path="/chat">
               <Chat />

@@ -131,10 +131,10 @@ const Navbar = ({ user, userChange }) => {
   );
 
   return (
-    <div className='navbar mb-3'>
+    <div className='navbar fixed-top'>
       <div className="container">
         <a href="#/">
-          <img src='https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png' alt="" className="logo" />
+          <img src={window.location.origin + '/logo.png'} alt="" className="logo" />
         </a>
         <div>
           {/* <Button size='small' variant="outlined" color="primary" onClick={() => setOpenSignIn(true)}>Sign In</Button> */}
@@ -177,13 +177,13 @@ const Navbar = ({ user, userChange }) => {
           <div className="auth__btn">
             <Button
               className={classes.btn}
-              onClick={() => setOpen(true)}
+              onClick={() => window.location = "#/signup"}
             >
               Sign Up
             </Button>
             <Button
               className={classes.btn}
-              onClick={() => setOpenSignIn(true)}
+              onClick={() => window.location = "#/login"}
             >
               Sign In
             </Button>
