@@ -1,11 +1,15 @@
+// Modules
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar/Navbar';
-import Post from './components/post/Post';
-import Footer from './components/footer/footer';
-// import Upload from './components/Upload';
-import ImageUploader from './imageUpload';
-import './App.css';
+import {HashRouter as Router, Route, Switch} from 'react-router-dom'
+import Home from './components/home/home'
+import Chat from './components/chat/chat'
 
+// Navbar And Footer
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/footer/footer';
+
+// Style Module
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -36,31 +40,20 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <div className='container'>
-        <div className="App">
-          <Navbar user={user} userChange={userChange} />
-          <div className='upload-container'>
-            {user ? <ImageUploader username={user.displayName} /> : <h2>Please Login to Upload Photos</h2> }
-          </div>
-          <div className='background'>
-            {
-              posts.map(({ id, post }) => (
-                <Post
-                  key={id}
-                  postId={id}
-                  username={post.username}
-                  location={post.location}
-                  imageURL={post.imageURL}
-                  command={post.command}
-                />
-              ))
-            }
-          </div>
-        </div>
+    <Router>
+      <div className="App">
+        <Navbar user={user} userChange={userChange} />
+          <Switch>
+            <Route exact path="/">
+              <Home posts={posts} user={user} userChange={userChange} />
+            </Route>
+            <Route exact path="/chat">
+              <Chat />
+            </Route>
+          </Switch>
+        <Footer className="px-3" />
       </div>
-      <Footer className="px-3" />
-    </div>
+    </Router>
   );
 }
 

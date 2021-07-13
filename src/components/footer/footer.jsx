@@ -2,10 +2,10 @@ import React from "react"
 import 'font-awesome/css/font-awesome.min.css';
 
 const Footer = () => <footer className="footer sticky-bottom page-footer font-small blue pt-4" style={{backgroundColor: "#e9ecef"}}>
-    <div className="container-fluid text-center text-md-left">
+    <div className="container-fluid text-center text-md-left container">
         <div className="row">
             <div className="col-md-6 mt-md-0 mt-3 px-3">
-                <div className="pl-5">
+                <div>
                     <h5 className="text-uppercase text-primary">Instagram Clone</h5>
                     <p>This Clone application is completely for learning purpose.</p>
                 </div>
@@ -14,8 +14,8 @@ const Footer = () => <footer className="footer sticky-bottom page-footer font-sm
             <hr className="clearfix w-100 d-md-none pb-0"/>
 
             <div className="col-md-6 mb-md-0 mb-3">
-                <div className="pl-5">
-                    <h5 className="text-uppercase">Please support with you lovable froke and star🔥❤</h5>
+                <div>
+                    <h5 className="text-uppercase">Please support with you lovable froke and star<span role="img" aria-label="img">🔥❤</span></h5>
                     <ul className="list-unstyled">
                         <li>
                             <a href="https://github.com/Afranzio/Instagram-Clone-Quazi">

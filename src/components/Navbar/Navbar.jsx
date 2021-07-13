@@ -5,6 +5,7 @@ import { auth } from '../../firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { TextField } from '@material-ui/core'
+import ForumIcon from '@material-ui/icons/Forum';
 
 import './navbar.css'
 
@@ -40,7 +41,6 @@ const Navbar = ({ user, userChange }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  //   const [user, setUser]=useState();
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false)
 
@@ -79,8 +79,6 @@ const Navbar = ({ user, userChange }) => {
       if (authUser) {
         //user has loggedd in
         userChange(authUser);
-        // return authUser.updateProfile({
-        //   displayName: username })
       }
       else {
         //user has logged out
@@ -133,54 +131,65 @@ const Navbar = ({ user, userChange }) => {
   );
 
   return (
-    <div className='navbar'>
-      <img src='https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png' alt="" className="logo" />
-      <div>
-        {/* <Button size='small' variant="outlined" color="primary" onClick={() => setOpenSignIn(true)}>Sign In</Button> */}
-        <Modal
-          open={openSignIn}
-          onClose={() => setOpenSignIn(false)}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-        >
-          {bodyIn}
-        </Modal>
-        {/* <Button size='small' variant="outlined" color="primary" onClick={() => setOpen(true)} >Sign Up</Button> */}
-        <Modal
-          open={open}
-          onClose={() => setOpen(false)}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-        >
-          {body}
-        </Modal>
-      </div>
-      {user ? (
-        <Button
-          className={classes.btn}
-          size='small'
-          // variant="outlined"
-          // color="primary"
-          onClick={() => auth.signOut()}
-        >
-          Logout
-        </Button>
-      ) : (
-        <div className="auth__btn">
-          <Button
-            className={classes.btn}
-            onClick={() => setOpen(true)}
+    <div className='navbar mb-3'>
+      <div className="container">
+        <a href="#/">
+          <img src='https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png' alt="" className="logo" />
+        </a>
+        <div>
+          {/* <Button size='small' variant="outlined" color="primary" onClick={() => setOpenSignIn(true)}>Sign In</Button> */}
+          <Modal
+            open={openSignIn}
+            onClose={() => setOpenSignIn(false)}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
           >
-            Sign Up
-          </Button>
-          <Button
-            className={classes.btn}
-            onClick={() => setOpenSignIn(true)}
+            {bodyIn}
+          </Modal>
+          {/* <Button size='small' variant="outlined" color="primary" onClick={() => setOpen(true)} >Sign Up</Button> */}
+          <Modal
+            open={open}
+            onClose={() => setOpen(false)}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
           >
-            Sign In
-          </Button>
+            {body}
+          </Modal>
         </div>
-      )}
+        {user ? (
+          <div>
+            <Button
+              className={classes.btn}
+              size='small'
+              onClick={() => window.location = `#/chat`}
+            >
+              <ForumIcon />
+            </Button>
+            <Button
+              className={classes.btn}
+              size='small'
+              onClick={() => auth.signOut()}
+            >
+              Logout
+            </Button>
+          </div>
+        ) : (
+          <div className="auth__btn">
+            <Button
+              className={classes.btn}
+              onClick={() => setOpen(true)}
+            >
+              Sign Up
+            </Button>
+            <Button
+              className={classes.btn}
+              onClick={() => setOpenSignIn(true)}
+            >
+              Sign In
+            </Button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

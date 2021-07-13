@@ -1,8 +1,7 @@
 import React,{useState} from 'react'
 import {Input, Button} from '@material-ui/core'
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
-import { storage, db } from "./firebase";
+import { storage, db } from "../../firebase";
 import  firebase  from "firebase";
 
 
